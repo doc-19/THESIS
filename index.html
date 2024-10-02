@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>San Jose District Hospital AMS</title>
+    <link rel="stylesheet" href="assets/landing.css" />
+  </head>
+  <body>
+    <style>
+      /* Center checkmark window */
+      #successWindow {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background-color: #4caf50;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: showCheck 1s ease-in-out;
+      }
+
+      /* Checkmark style */
+      .checkmark {
+        color: white;
+        font-size: 50px;
+      }
+
+      /* Error message styling */
+      #errorMessage {
+        color: red;
+        font-weight: lighter;
+      }
+
+      /* Animation for the checkmark window */
+      @keyframes showCheck {
+        0% {
+          transform: translate(-50%, -50%) scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+    <div class="container">
+      <div class="left-section">
+        <div class="logo">
+          <img src="assets/logo hospital.png" alt="Hospital Logo" />
+        </div>
+        <div class="logos">
+          <img src="assets/batangas-logo.png" alt="Batangas Logo" />
+          <img src="assets/philhealth-logo.png" alt="PhilHealth Logo" />
+        </div>
+      </div>
+      <div class="right-section">
+        <h1 style="font-style: italic; text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.5); /* Add shadow */;">AMS</h1>
+        <div class="login-box">
+          <form
+            id="loginForm"
+            action="./login/login.php"
+            method="post"
+            onsubmit="validateLogin(event)"
+          >
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <!-- Error message area -->
+            <div id="errorMessage" style="color: red"></div>
+            <button type="submit">LOG IN</button>
+          </form>
+        </div>
+        <footer>
+          <p>SAN JOSE DISTRICT HOSPITAL RESOURCE MANAGEMENT SYSTEM</p>
+        </footer>
+      </div>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get("error");
+      const loginSuccess = urlParams.get("login");
+
+      // Display error message if credentials are incorrect
+      if (error) {
+        document.getElementById("errorMessage").innerText = error;
+      }
+
+      // If login is successful, show success window and redirect after 2 seconds
+      if (loginSuccess === "success") {
+        const successWindow = document.getElementById("successWindow");
+        successWindow.style.display = "flex"; // Show the checkmark window
+
+        // After 2 seconds, redirect to the dashboard
+        setTimeout(() => {
+          window.location.href = "../admindash.html"; // Change this to your destination page
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

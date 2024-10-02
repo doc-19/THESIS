@@ -1,0 +1,245 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #3EC14F;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-logo {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    
+}
+
+.sidebar-user {
+    margin-bottom: 150px;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px ;
+}
+
+
+
+.sidebar-nav ul {
+    list-style-type: none;
+}
+
+.sidebar-nav li {
+    padding: 30px ;
+}
+
+.sidebar-nav li.active,
+.sidebar-nav li:hover {
+    background-color: #2b9e3c;
+    width:px;
+    margin-bottom: 10px;
+}
+
+.sidebar-nav li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding-left: 20px;
+}
+
+.dashboard {
+    width: 80%;
+    padding: 10px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.date-time p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.download-btn {
+    background-color: #ddd;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 30%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.card button {
+    background-color: #3EC14F;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #2b9e3c;
+}
+
+.dashboard-charts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.yearly-supplies, .ppmp-status, .quarterly-supplies {
+    width: 30%;
+}
+
+canvas {
+    width: 100%;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+
+select {
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Responsive Styles */
+/* Tablets and smaller devices (768px and below) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 25%;
+    }
+    .dashboard {
+        width: 75%;
+    }
+    .card {
+        width: 48%;
+        margin-bottom: 10px;
+    }
+    .dashboard-charts > div {
+        width: 48%;
+    }
+}
+
+/* Mobile devices (480px and below) */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .sidebar-logo {
+        font-size: 18px;
+    }
+
+    .sidebar-user {
+        font-size: 14px;
+    }
+
+    .sidebar-user img {
+        width: 30px;
+    }
+
+    .sidebar-nav li {
+        padding: 10px 0;
+    }
+
+    .sidebar-nav li a {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        width: calc(100% - 100px);
+        padding: 10px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-header h2 {
+        font-size: 20px;
+    }
+
+    .date-time p {
+        font-size: 16px;
+    }
+
+    .download-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .dashboard-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .dashboard-charts {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .yearly-supplies, .ppmp-status, .quarterly-supplies {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    canvas {
+        height: 150px;
+    }
+}
