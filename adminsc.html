@@ -4,43 +4,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RMS Project Procurement Management Plan</title>
-    <link rel="stylesheet" href="assets/ssupplyc.css" />
+    <link rel="stylesheet" href="assets/dash.css" />
+    <link rel="stylesheet" href="ssupplyc.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
       <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-logo">
-          <h1>RMS</h1>
+      <div class="sidebar">
+        <div class="logo-details">
+          <div class="icon" style="font-size: 40px">RMS</div>
+          <i class="bx bx-menu" id="btn"></i>
         </div>
-        <div class="sidebar-user">
-          <p>Department Name</p>
-        </div>
-        <nav class="sidebar-nav">
-          <ul>
-            <li><a href="admindash.html">Dashboard</a></li>
-            <li><a href="admininv.html">Inventory</a></li>
-            <li><a href="adminppmp.html">PPMP</a></li>
-            <li class="active"><a href="adminsc.html">Supply Chain</a></li>
-            <li><a href="index.html">Logout</a></li>
-          </ul>
-        </nav>
-      </aside>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="admindash.html">
+              <i class="bx bx-grid-alt" id="icons"></i>
+              <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+          </li>
+          <li>
+            <a href="admininv.html">
+              <i class="bx bx-box" id="icons"></i>
+              <span class="links_name">Inventory</span>
+            </a>
+            <span class="tooltip">Inventory</span>
+          </li>
+          <li>
+            <a href="adminppmp.html">
+              <i class="bx bxs-edit" id="icons"></i>
+              <span class="links_name">PPMP</span>
+            </a>
+            <span class="tooltip">PPMP</span>
+          </li>
+          <li class="active">
+            <a href="adminsc.html">
+              <i class="bx bx-shape-circle" id="icons"></i>
+              <span class="links_name">Supply Chain</span>
+            </a>
+            <span class="tooltip">Supply Chain</span>
+          </li>
+          <li>
+            <a href="index.html">
+              <i class="bx bx-log-out-circle" id="icons"></i>
+              <span class="links_name">Logout</span>
+            </a>
+            <span class="tooltip">Logout</span>
+          </li>
+        </ul>
+      </div>
 
       <!-- Main Content -->
-      <main class="dashboard">
-        <header class="dashboard-header">
-          <div class="date-time">
+      <div class="main-content">
+        <header class="sc-dashboard-header">
+          <div class="sc-date-time">
             <p>May 10, 2024</p>
-            <p>8:00AM</p>
+            <p>8:00 AM</p>
           </div>
+          <button class="download-btn">Download Report</button>
         </header>
 
-        <section class="purchase-request">
-          <div class="header">
+        <section class="sc-purchase-request">
+          <div class="sc-header">
             <h2>Project Procurement Management Plan</h2>
           </div>
-          <table class="supply-table">
+          <table class="sc-supply-table">
             <thead>
               <tr>
                 <th>Name of the item</th>
@@ -119,9 +151,9 @@
             </tbody>
           </table>
         </section>
-      </main>
+      </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="styles/js/app.js"></script>
   </body>
 </html>
