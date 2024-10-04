@@ -106,6 +106,7 @@
       </div>
     </div>
     <?php require_once 'assets/add_item_modal.php' ?>
+    <?php require_once 'assets/edit_item_modal.php' ?>
     <script src="styles/js/app.js"></script>
     <script src = "Controller/InventoryController.js"></script>
     <script>
@@ -134,6 +135,7 @@
         });
 
     });
+    
     </script>
   </body>
 </html>

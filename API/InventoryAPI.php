@@ -58,6 +58,34 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     } 
 } 
 
+//EDIT API
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    $data = json_decode(file_get_contents("php://input"), true); 
+    
+    if (isset($data['inventory_id'])) {
+        $inventoryId = $data['inventory_id'];
+        $result = $inventory->updateItem(
+            $inventoryId,
+            $data['medicine_name'], 
+            $data['brand_name'], 
+            $data['stock_qty'], 
+            $data['unit_measurement'], 
+            $data['cost_per_unit']
+        );
+
+        if ($result) {
+            echo json_encode(['message' => 'Item updated successfully']);
+        } else {
+            http_response_code(500);
+            echo json_encode(['message' => 'Failed to update item']);
+        }
+    } else {
+        http_response_code(400);
+        echo json_encode(['message' => 'Invalid item ID for updating']);
+    }
+}
+
+
 //GET API
 if($_SERVER['REQUEST_METHOD'] === 'GET') { 
     $items = $inventory->getInventoryItems();

@@ -26,27 +26,87 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${item.beginning_quantity}</td>
           <td>${item.unit_measurement}</td>
           <td>₱${item.unit_cost}</td>
+          
           <td>
+            <button class="edit-btn" data-id="${item.inventory_id}">Edit</button>
             <button class="delete-btn" data-id="${item.inventory_id}">
               Delete
             </button>
           </td>
         `;
 
+        
+
+        const editButton = row.querySelector(".edit-btn");
+        editButton.addEventListener("click", () => openEditModal(item));
+
         const deleteButton = row.querySelector(".delete-btn");
         deleteButton.addEventListener("click", () => deleteItem(item.inventory_id));
+
+        
   
         tableBody.appendChild(row); 
       });
-
-      // document.getElementById("no-data-message").style.display = "none";
     };
+
+    const openEditModal = (item) => {
+      const editModal = document.getElementById("editItemModal");
+      document.getElementById("edit-inventory-id").value = item.inventory_id;
+      document.getElementById("edit-medicine-name").value = item.item_description;
+      document.getElementById("edit-brand-name").value = item.brand_name;
+      document.getElementById("edit-stock-qty").value = item.beginning_quantity;
+      document.getElementById("edit-unit-measurement").value = item.unit_measurement;
+      document.getElementById("edit-cost-per-unit").value = item.unit_cost;
+
+      editModal.style.display = "block"; 
+  };
+
+  
+  document.getElementById("editItemForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const inventoryId = document.getElementById("edit-inventory-id").value;
+      const medicineName = document.getElementById("edit-medicine-name").value;
+      const brand_name = document.getElementById("edit-brand-name").value;
+      const stockQty = document.getElementById("edit-stock-qty").value;
+      const unitMeasurement = document.getElementById("edit-unit-measurement").value;
+      const costPerUnit = document.getElementById("edit-cost-per-unit").value;
+
+      const updatedItem = {
+          inventory_id: inventoryId,
+          medicine_name: medicineName,
+          brand_name: brand_name,
+          stock_qty: stockQty,
+          unit_measurement: unitMeasurement,
+          cost_per_unit: costPerUnit
+      };
+
+      try {
+          const response = await fetch('API/InventoryAPI.php', {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(updatedItem)
+          });
+          
+          const result = await response.json();
+
+          if (response.ok) {
+              alert(result.message);
+              document.getElementById("editItemModal").style.display = "none"; // Hide the modal
+              fetchInventoryData();  
+          } else {
+              alert(result.message);
+          }
+      } catch (error) {
+          console.error("Error updating item:", error);
+      }
+  });
     
-    // const displayNoDataMessage = () => {
-    //     document.getElementById("no-data-message").style.display = "block";
-    //   };
-    
+  //FETCHING TEYBOL
     fetchInventoryData();
+
     
     //Function DeleteItem
     function deleteItem(inventoryId) {

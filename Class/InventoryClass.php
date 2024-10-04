@@ -53,4 +53,19 @@ class InventoryClass {
         $stmt->bind_param("i", $inventoryId); 
         return $stmt->execute();
     }
+
+    public function updateItem($inventoryId, $medicineName, $brand_name, $stockQty, $unitMeasurement, $costPerUnit) {
+        $query = "UPDATE inventory SET item_description = ?, brand_name = ?, beginning_quantity = ?, unit_measurement = ?, unit_cost = ? WHERE inventory_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ssidsi", 
+            $medicineName, 
+            $brand_name, 
+            $stockQty, 
+            $unitMeasurement, 
+            $costPerUnit, 
+            $inventoryId
+        );
+        return $stmt->execute();
+    }
+    
 }
