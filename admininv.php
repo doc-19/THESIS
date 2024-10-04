@@ -91,10 +91,11 @@
               <tr>
                 <th>Medicine Name</th>
                 <th>Medicine ID</th>
-                <!-- <th>Brand Name</th> -->
+                <th>Brand Name</th>
                 <th>Stock in Qty</th>
                 <th>Unit of Measurement</th>
                 <th>Cost per Unit</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -125,6 +126,13 @@
             modal.style.display = "none";
             }
         }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Item added successfully!");
+            modal.style.display = "none";
+        });
+
     });
     </script>
   </body>

@@ -1,4 +1,5 @@
 <?php
+//CHEIN, LAST MODIFIED OCT 4 3:20 PM
 class InventoryClass {
     private $conn;
 
@@ -23,5 +24,33 @@ class InventoryClass {
         return $inventory;
     }
 
-    
+    public function addNewItem($medicineName, $brand_name, $unitMeasurement, $stockQty, $costPerUnit) {
+        $issuance = 0;        
+        $endingBalance = 0;
+        $totalCost = 0.0; 
+
+        $query = "INSERT INTO inventory 
+              (item_description, brand_name, unit_measurement, beginning_quantity, unit_cost, issuance, ending_balance, total_cost)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("sssidiid", 
+        $medicineName,        
+        $brand_name,          
+        $unitMeasurement,     
+        $stockQty,            
+        $costPerUnit,         
+        $issuance,            
+        $endingBalance,
+        $totalCost            
+    );
+        return $stmt->execute();
+    }
+
+    public function deleteItem($inventoryId) {
+        $query = "DELETE FROM inventory WHERE inventory_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $inventoryId); 
+        return $stmt->execute();
+    }
 }
