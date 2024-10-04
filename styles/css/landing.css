@@ -42,7 +42,7 @@ body {
 
 .right-section {
     width: 50%;
-    background-image: url('hospital-logo.png');
+    background-image: url('../images/hospital-logo.png');
     background-size: cover;
     background-position: center;
     color: white;
