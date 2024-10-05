@@ -19,14 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         isset($data['brand_name']) &&
         isset($data['stock_qty']) && 
         isset($data['unit_measurement']) && 
-        isset($data['cost_per_unit'])
+        isset($data['cost_per_unit']) &&
+        isset($data['totalAmount'])
     ) {
         $result = $inventory->addNewItem(
             $data['medicine_name'], 
             $data['brand_name'], 
             $data['stock_qty'], 
             $data['unit_measurement'], 
-            $data['cost_per_unit']
+            $data['cost_per_unit'],
+            $data['totalAmount']
         );
 
         if ($result) {

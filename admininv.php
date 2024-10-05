@@ -95,6 +95,7 @@
                 <th>Stock in Qty</th>
                 <th>Unit of Measurement</th>
                 <th>Cost per Unit</th>
+                <th>Total Cost</th>
                 <th>Action</th>
               </tr>
             </thead>

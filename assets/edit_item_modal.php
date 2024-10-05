@@ -23,3 +23,20 @@
     </form>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const editModal = document.getElementById("editItemModal");
+    const closeBtn = document.querySelector("#editItemModal .close-btn");
+
+    closeBtn.addEventListener("click", function() {
+        editModal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target === editModal) {
+            editModal.style.display = "none";
+        }
+    });
+});
+
+</script>

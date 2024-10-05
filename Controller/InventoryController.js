@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${item.beginning_quantity}</td>
           <td>${item.unit_measurement}</td>
           <td>₱${item.unit_cost}</td>
+          <td>₱${item.total_cost}</td>
           
           <td>
             <button class="edit-btn" data-id="${item.inventory_id}">Edit</button>
@@ -145,13 +146,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const stockQty = document.getElementById("stock-qty").value;
       const unitMeasurement = document.getElementById("unit-measurement").value;
       const costPerUnit = document.getElementById("cost-per-unit").value;
+      const totalAmount = (parseFloat(stockQty) * parseFloat(costPerUnit)).toFixed(2);
+
   
       const newItem = {
         medicine_name: medicineName,
         brand_name: brand_name,
         stock_qty: stockQty,
         unit_measurement: unitMeasurement,
-        cost_per_unit: costPerUnit
+        cost_per_unit: costPerUnit,
+        totalAmount: totalAmount
       };
   
       try {

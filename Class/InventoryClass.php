@@ -24,10 +24,10 @@ class InventoryClass {
         return $inventory;
     }
 
-    public function addNewItem($medicineName, $brand_name, $unitMeasurement, $stockQty, $costPerUnit) {
+    public function addNewItem($medicineName, $brand_name, $unitMeasurement, $stockQty, $costPerUnit, $totalCost) {
         $issuance = 0;        
         $endingBalance = 0;
-        $totalCost = 0.0; 
+        
 
         $query = "INSERT INTO inventory 
               (item_description, brand_name, unit_measurement, beginning_quantity, unit_cost, issuance, ending_balance, total_cost)

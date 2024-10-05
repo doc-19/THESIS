@@ -18,7 +18,24 @@
         <label for="cost-per-unit">Cost per Unit:</label>
         <input type="number" id="cost-per-unit" name="cost-per-unit" required><br>
 
+        <label for="total-amount">Total Amount:</label>
+        <input type="number" id="total-amount" name="total-amount" readonly><br>
+
+
         <button type="submit">Submit</button>
         </form>
     </div>
     </div>
+
+    <script>
+        function calculateTotalAmount() {
+            const qty = parseFloat(document.getElementById("stock-qty").value) || 0;
+            const unitCost = parseFloat(document.getElementById("cost-per-unit").value) || 0;
+                    const totalAmount = qty * unitCost;
+            document.getElementById("total-amount").value = totalAmount.toFixed(2);
+        }
+
+        document.getElementById("stock-qty").addEventListener("input", calculateTotalAmount);
+        document.getElementById("cost-per-unit").addEventListener("input", calculateTotalAmount);
+
+    </script>
