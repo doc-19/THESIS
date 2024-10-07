@@ -146,8 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const stockQty = document.getElementById("stock-qty").value;
       const unitMeasurement = document.getElementById("unit-measurement").value;
       const costPerUnit = document.getElementById("cost-per-unit").value;
-      const totalAmount = (parseFloat(stockQty) * parseFloat(costPerUnit)).toFixed(2);
+      const issuanceQty = document.getElementById("issuance-qty").value;
+      const totalAmount = (parseFloat(issuanceQty) * parseFloat(costPerUnit)).toFixed(2);
 
+      
   
       const newItem = {
         medicine_name: medicineName,
@@ -155,8 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
         stock_qty: stockQty,
         unit_measurement: unitMeasurement,
         cost_per_unit: costPerUnit,
+        issuance_qty: issuanceQty,
         totalAmount: totalAmount
       };
+
+     
   
       try {
         

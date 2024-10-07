@@ -15,11 +15,12 @@ $inventory = new InventoryClass($conn);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true); 
     if (
-        isset($data['medicine_name']) && 
+        isset($data['medicine_name']) &&
         isset($data['brand_name']) &&
         isset($data['stock_qty']) && 
         isset($data['unit_measurement']) && 
         isset($data['cost_per_unit']) &&
+        isset($data['issuance_qty']) &&
         isset($data['totalAmount'])
     ) {
         $result = $inventory->addNewItem(
@@ -28,8 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data['stock_qty'], 
             $data['unit_measurement'], 
             $data['cost_per_unit'],
+            $data['issuance_qty'],
             $data['totalAmount']
         );
+        
 
         if ($result) {
             echo json_encode(['message' => 'Item added successfully']);
