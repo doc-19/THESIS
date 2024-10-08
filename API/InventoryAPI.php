@@ -95,8 +95,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
 //GET API
 if($_SERVER['REQUEST_METHOD'] === 'GET') { 
     $items = $inventory->getInventoryItems();
+
+    $total = $inventory->getTotalQuantity();
+
     header('Content-Type: application/json');
-    echo json_encode($items);
+    echo json_encode([
+        'items' => $items,
+        'total_quantity' => $total
+    ]);
 }
 
 ?>

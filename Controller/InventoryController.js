@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const fetchInventoryData = async () => {
         const response = await fetch('API/InventoryAPI.php');
-        const inventory = await response.json();
+        const data = await response.json(); 
+        
+        const items = data.items; 
+        const totalQuantity = data.total_quantity; 
 
-        console.log(inventory);
-
-        populateInventoryTable(inventory); 
+        populateInventoryTable(items); 
+        updateTotalQuantity(totalQuantity);  
 
     };
   
@@ -79,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const unitMeasurement = document.getElementById("edit-unit-measurement").value;
       const costPerUnit = document.getElementById("edit-cost-per-unit").value;
       const issuanceQty = parseFloat(document.getElementById("edit-issuance-qty").value);
-      
+
       const updatedItem = {
           inventory_id: inventoryId,
           medicine_name: medicineName,
@@ -112,7 +114,11 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("Error updating item:", error);
       }
   });
-    
+
+  const updateTotalQuantity = (totalQuantity) => {
+    document.getElementById("total-quantity-medicine").textContent = totalQuantity;  // Update the total quantity in the <p> element
+  };
+  
   //FETCHING TEYBOL
     fetchInventoryData();
 
@@ -197,7 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error adding item:", error);
       }
     });
-  
+
+    //TOTAL
+   
   
   });
   

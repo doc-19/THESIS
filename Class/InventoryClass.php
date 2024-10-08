@@ -8,7 +8,7 @@ class InventoryClass {
     }
 
   
-   
+   //Getting All the items
     public function getInventoryItems() {
         $query = "SELECT * FROM inventory";
         $stmt = $this->conn->prepare($query); 
@@ -24,6 +24,18 @@ class InventoryClass {
         return $inventory;
     }
 
+    //Getting the count of quantity
+    public function getTotalQuantity() {
+        $query = "SELECT SUM(beginning_quantity) AS total_quantity FROM inventory";
+        $stmt = $this->conn->prepare($query); 
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $row = $result->fetch_assoc();
+        return $row['total_quantity'];
+    }
+
+    //Adding Item query
     public function addNewItem($medicineName, $brand_name, $stockQty, $unitMeasurement, $costPerUnit, $issuance, $totalCost) { 
         $endingBalance = (float)$stockQty - $issuance;
     
@@ -47,6 +59,7 @@ class InventoryClass {
     }
     
 
+    //Deleting all the items
     public function deleteItem($inventoryId) {
         $query = "DELETE FROM inventory WHERE inventory_id = ?";
         $stmt = $this->conn->prepare($query);
@@ -54,6 +67,7 @@ class InventoryClass {
         return $stmt->execute();
     }
 
+    //Updating the item
     public function updateItem($inventoryId, $medicineName, $brand_name, $stockQty, $unitMeasurement, $costPerUnit, $issuance) {
         $endingBalance = (float)$stockQty - (float)$issuance;
         $totalCost = (float)$costPerUnit * (float)$issuance;

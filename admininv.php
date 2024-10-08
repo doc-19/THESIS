@@ -63,7 +63,7 @@
             <p id = "date"></p>
             <p id = "time"></p>
           </div>
-          <button class="download-btn">Download Report</button>
+          <!-- <button class="download-btn">Download Report</button> -->
         </header>
 
         <section class="inventory-header">
@@ -73,12 +73,12 @@
           </div>
           <div class="inventory-stats">
             <h3>Total Quantity of Medicines</h3>
-            <p class="total-medicines">5,403</p>
+            <p class="total-medicines" id="total-quantity-medicine">5,403</p>
             <div class="inventory-graph"></div>
           </div>
           <div class="inventory-controls">
             <input type="search" placeholder="Search the ID of Medicines..." />
-            <button class="quick-edit-btn">Quick Edit</button>
+            <button class="quick-edit-btn">Search</button>
             <button class="add-item-btn">Add New Item</button>
             <button class="check-items-btn">Import Items</button>
           </div>
