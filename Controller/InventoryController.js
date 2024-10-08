@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>${item.beginning_quantity}</td>
           <td>${item.unit_measurement}</td>
           <td>₱${item.unit_cost}</td>
+          <td>${item.issuance}</td>
+          <td>${item.ending_balance}</td>
           <td>₱${item.total_cost}</td>
           
           <td>
@@ -143,10 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
       
       const medicineName = document.getElementById("medicine-name").value;
       const brand_name = document.getElementById("brand-name").value;
-      const stockQty = document.getElementById("stock-qty").value;
-      const unitMeasurement = document.getElementById("unit-measurement").value;
+      const stockQty = parseFloat(document.getElementById("stock-qty").value);
+      const unit_measurement = document.getElementById("unit-measurement").value;
       const costPerUnit = document.getElementById("cost-per-unit").value;
-      const issuanceQty = document.getElementById("issuance-qty").value;
+      const issuanceQty = parseFloat(document.getElementById("issuance-qty").value);
       const totalAmount = (parseFloat(issuanceQty) * parseFloat(costPerUnit)).toFixed(2);
 
       
@@ -155,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         medicine_name: medicineName,
         brand_name: brand_name,
         stock_qty: stockQty,
-        unit_measurement: unitMeasurement,
+        unit_measurement: unit_measurement,
         cost_per_unit: costPerUnit,
         issuance_qty: issuanceQty,
         totalAmount: totalAmount
@@ -183,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
           alert(result.message); 
         }
+      console.log('Stock Qty:', stockQty, 'Issuance Qty:', issuanceQty, "UNIT:" ,  unit_measurement);
+
       } catch (error) {
         console.error("Error adding item:", error);
       }

@@ -60,8 +60,8 @@
       <div class="main-content">
         <header class="dashboard-header">
           <div class="date-time">
-            <p>May 10, 2024</p>
-            <p>8:00 AM</p>
+            <p id = "date"></p>
+            <p id = "time"></p>
           </div>
           <button class="download-btn">Download Report</button>
         </header>
@@ -95,6 +95,8 @@
                 <th>Stock in Qty</th>
                 <th>Unit of Measurement</th>
                 <th>Cost per Unit</th>
+                <th>Issuance</th>
+                <th>Ending balance</th>
                 <th>Total Cost</th>
                 <th>Action</th>
               </tr>
@@ -138,5 +140,23 @@
     });
     
     </script>
+
+    <!-- DATE AND TIME -->
+    <script>
+    function updateDateTime() {
+        const now = new Date();
+
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = now.toLocaleDateString('en-US', options);
+
+        const formattedTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+
+        document.getElementById('date').textContent = formattedDate;
+        document.getElementById('time').textContent = formattedTime;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+</script>
   </body>
 </html>
