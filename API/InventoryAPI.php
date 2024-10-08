@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             $data['brand_name'], 
             $data['stock_qty'], 
             $data['unit_measurement'], 
-            $data['cost_per_unit']
+            $data['cost_per_unit'],
+            $data['issuance_qty']
         );
 
         if ($result) {

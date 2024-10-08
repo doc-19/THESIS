@@ -60,9 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("edit-stock-qty").value = item.beginning_quantity;
       document.getElementById("edit-unit-measurement").value = item.unit_measurement;
       document.getElementById("edit-cost-per-unit").value = item.unit_cost;
+      document.getElementById("edit-issuance-qty").value = item.issuance;
+      const totalAmount = item.unit_cost * item.issuance;  
+      document.getElementById("edit-total-amount").value = totalAmount.toFixed(2);
+
 
       editModal.style.display = "block"; 
-  };
+  }
 
   
   document.getElementById("editItemForm").addEventListener("submit", async function(event) {
@@ -74,14 +78,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const stockQty = document.getElementById("edit-stock-qty").value;
       const unitMeasurement = document.getElementById("edit-unit-measurement").value;
       const costPerUnit = document.getElementById("edit-cost-per-unit").value;
-
+      const issuanceQty = parseFloat(document.getElementById("edit-issuance-qty").value);
+      
       const updatedItem = {
           inventory_id: inventoryId,
           medicine_name: medicineName,
           brand_name: brand_name,
           stock_qty: stockQty,
           unit_measurement: unitMeasurement,
-          cost_per_unit: costPerUnit
+          cost_per_unit: costPerUnit,
+          issuance_qty: issuanceQty
       };
 
       try {

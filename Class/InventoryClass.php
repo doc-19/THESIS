@@ -54,18 +54,25 @@ class InventoryClass {
         return $stmt->execute();
     }
 
-    public function updateItem($inventoryId, $medicineName, $brand_name, $stockQty, $unitMeasurement, $costPerUnit) {
-        $query = "UPDATE inventory SET item_description = ?, brand_name = ?, beginning_quantity = ?, unit_measurement = ?, unit_cost = ? WHERE inventory_id = ?";
+    public function updateItem($inventoryId, $medicineName, $brand_name, $stockQty, $unitMeasurement, $costPerUnit, $issuance) {
+        $endingBalance = (float)$stockQty - (float)$issuance;
+        $totalCost = (float)$costPerUnit * (float)$issuance;
+    
+        $query = "UPDATE inventory SET item_description = ?, brand_name = ?, beginning_quantity = ?, unit_measurement = ?, unit_cost = ?, issuance = ?, ending_balance = ?, total_cost = ? WHERE inventory_id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("ssidsi", 
+        $stmt->bind_param("ssisdidii", 
             $medicineName, 
             $brand_name, 
             $stockQty, 
             $unitMeasurement, 
-            $costPerUnit, 
+            $costPerUnit,
+            $issuance,
+            $endingBalance,
+            $totalCost,
             $inventoryId
         );
         return $stmt->execute();
     }
+    
     
 }

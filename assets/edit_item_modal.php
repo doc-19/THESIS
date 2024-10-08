@@ -18,6 +18,13 @@
       
       <label for="edit-cost-per-unit">Cost per Unit</label>
       <input type="number" step="0.01" id="edit-cost-per-unit" required>
+
+      <label for="edit-issuance-qty">Issuance</label>
+      <input type="number" id="edit-issuance-qty" required>
+
+      <label for="edit-total-amount">Total Amount:</label>
+      <input type="number" id="edit-total-amount" name="edit-total-amount" readonly><br>
+
       
       <button type="submit">Update Item</button>
     </form>
@@ -39,4 +46,15 @@
     });
 });
 
+</script>
+<script>
+function calculateTotalAmount() {
+    const qty = parseFloat(document.getElementById("edit-issuance-qty").value) || 0;
+    const unitCost = parseFloat(document.getElementById("edit-cost-per-unit").value) || 0;
+    const totalAmount = qty * unitCost;
+    document.getElementById("edit-total-amount").value = totalAmount.toFixed(2);  
+}
+
+document.getElementById("edit-issuance-qty").addEventListener("input", calculateTotalAmount);
+document.getElementById("edit-cost-per-unit").addEventListener("input", calculateTotalAmount);
 </script>
